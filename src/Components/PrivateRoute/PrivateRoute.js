@@ -2,14 +2,15 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
-const emailID = localStorage.getItem('email');
-const PrivateRoute = ({children, ...rest}) => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    return (
-        <Route
+
+const PrivateRoute = ({ children, ...rest }) => {
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+  return (
+    <Route
       {...rest}
       render={({ location }) =>
-      emailID ? (
+        loggedInUser.email? (
           children
         ) : (
           <Redirect
@@ -21,7 +22,7 @@ const PrivateRoute = ({children, ...rest}) => {
         )
       }
     />
-    );
+  );
 };
 
 export default PrivateRoute;

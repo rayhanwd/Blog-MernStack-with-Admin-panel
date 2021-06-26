@@ -1,67 +1,72 @@
-import React, { useContext } from "react";
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import FirebaseConfig from '../FirebaseConfig/firebase';
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { UserContext } from './../../App';
+import React, { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../../App';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { initializeLoginFramework, handleSignOut, signInWithEmailAndPassword } from './LogInManager';
+
+
 
 const LogIn = () => {
+    const [newUser, setNewUser] = useState(false);
+    const [user, setUser] = useState({
+        isSignedIn: false,
+        email: '',
+        password: ''
+    });
 
-    const [logInUser, setLogInUser] = useContext(UserContext);
+    initializeLoginFramework();
+
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
     const history = useHistory();
-
     const location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
 
-    const { from } = location.state || { from: { pathname: "/" } };
-
-    if (firebase.apps.length === 0) {
-        firebase.initializeApp(FirebaseConfig);
-    }
-
-    const handleGoogleSigning = () => {
-
-        var provider = new firebase.auth.GoogleAuthProvider();
-
-        firebase.auth()
-            .signInWithPopup(provider)
-            .then((result) => {
-
-                const { email, displayName } = result.user;
-                localStorage.setItem('email', email);
-                const signInUser = { name: displayName, email };
-                setLogInUser(signInUser);
-                history.replace(from);
-                history.push('/admin');
-
-            }).catch((error) => {
-
-                var errorCode = error.code;
-                var errorMessage = error.message;
-
-                var email = error.email;
-
-                var credential = error.credential;
-
-            });
-    }
-
- const handleSignOut = () => {
-        return firebase.auth().signOut()
+    const signOut = () => {
+        handleSignOut()
             .then(res => {
-                const signedOutUser = {
-                    isSignedIn: false,
-                    name: '',
-                    email: '',
-                    photo: '',
-                    error: '',
-                    success: false
-                }
-                localStorage.removeItem('email');
-                return signedOutUser;
-            }).catch(err => {
-                // An error happened.
-            });
+                handleResponse(res, false);
+            })
     }
+
+    const handleResponse = (res, redirect) => {
+        setUser(res);
+        setLoggedInUser(res);
+        if (redirect) {
+            history.replace(from);
+            
+        }
+    }
+
+    const handleBlur = (e) => {
+        let isFieldValid = true;
+        if (e.target.name === 'email') {
+            isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
+        }
+        if (e.target.name === 'password') {
+            const isPasswordValid = e.target.value.length > 6;
+            const passwordHasNumber = /\d{1}/.test(e.target.value);
+            isFieldValid = isPasswordValid && passwordHasNumber;
+        }
+        if (isFieldValid) {
+            const newUserInfo = { ...user };
+            newUserInfo[e.target.name] = e.target.value;
+            setUser(newUserInfo);
+            console.log(newUserInfo);
+        }
+    }
+    const handleSubmit = (e) => {
+        if (!newUser && user.email && user.password) {
+            signInWithEmailAndPassword(user.email, user.password)
+                .then(res => {
+                    handleResponse(res, true);
+                   
+                })
+        }
+
+        e.preventDefault();
+    }
+
     return (
 
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
@@ -69,26 +74,16 @@ const LogIn = () => {
                 <h1 className="font-bold text-center text-2xl mb-5">Technical Blog | Admin</h1>
                 <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
                     <div className="px-5 py-7">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <label className="font-semibold text-sm text-gray-600 pb-1 block">E-mail</label>
-                            <input type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+                            <input onBlur={handleBlur} name="email" type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
                             <label className="font-semibold text-sm text-gray-600 pb-1 block">Password</label>
-                            <input type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-                            <button type="submit" className="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-                                <span className="inline-block mr-2">LogIn</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 inline-block">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </button>
+                            <input onBlur={handleBlur} name="password" type="password" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+                            <input type="submit" className="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block" value="Submit"
+                            />
                         </form>
                     </div>
-                    <div className="p-5">
-                        <div className="grid grid-cols-3 gap-1">
-                            <button type="button" className="transition duration-200 border border-gray-200 text-gray-500 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block">MailUp</button>
-                            <button onClick={() => handleGoogleSigning()} type="button" className="transition duration-200 border border-gray-200 text-gray-500 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block">Google</button>
-                            <button type="button" className="transition duration-200 border border-gray-200 text-gray-500 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block">Github</button>
-                        </div>
-                    </div>
+
                     <div className="py-5">
                         <div className="grid grid-cols-2 gap-1">
                             <div className="text-center sm:text-left whitespace-nowrap">

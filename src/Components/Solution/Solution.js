@@ -4,25 +4,25 @@ import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, ScaleIcon } from '@her
 
 const features = [
     {
-        name: 'Competitive exchange rates',
+        name: 'Coding related issue',
         description:
             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
         icon: GlobeAltIcon,
     },
     {
-        name: 'No hidden fees',
+        name: 'Console error',
         description:
             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
         icon: ScaleIcon,
     },
     {
-        name: 'Transfers are instant',
+        name: 'Javascript tricky problem solved npm git package install issue',
         description:
             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
         icon: LightningBoltIcon,
     },
     {
-        name: 'Mobile notifications',
+        name: 'React core and advance code problem solved',
         description:
             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
         icon: AnnotationIcon,
@@ -34,9 +34,9 @@ const Solution = () => {
         <div className="py-12 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="lg:text-center">
-                    <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Transactions</h2>
+                    <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">problem solving</h2>
                     <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                        A better way to send money
+                        A better way to get coding solution
                     </p>
                     <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
                         Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in

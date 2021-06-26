@@ -16,7 +16,7 @@ const Admin = () => {
                     <Header/>
                     <div class="overflow-auto h-screen pb-24 px-4 md:px-6">
                         <h1 class="text-4xl font-semibold text-gray-800 dark:text-white">
-                            Good afternoom, Charlie
+                        Hello! {localStorage.getItem('email')}
                         </h1>
                         <h2 class="text-md text-gray-400">
                             Here&#x27;s what&#x27;s happening with your ambassador account today.

@@ -86,8 +86,8 @@ const Navs = () => {
             {({ open }) => (
                 <div className="border-b-2 border-gray-100">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
-                            <div className="flex justify-start lg:w-0 lg:flex-1">
+                        <div className="flex justify-around items-center py-4 md:justify-start md:space-x-10">
+                            <div className="flex mr-20">
                                 <a href="/">
                                     <img
                                         className="h-8 inline w-8 sm:h-10"

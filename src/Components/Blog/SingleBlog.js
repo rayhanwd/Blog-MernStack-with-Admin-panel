@@ -11,14 +11,13 @@ const SingleBlog = (props) => {
     }
     return (
         <div>
-            <dt className="flex">
+            <dt className="w-700">
                 <div className="mx-16">
-                    <img className="" src={image} />
+                    <img className="w-700" src={image} />
                 </div>
                 <div>
-                    <p className="mx-16 text-lg leading-6 font-medium text-gray-900">{title}</p>
-                    <dd className="mt-2 mx-16 text-base text-gray-500">{description}</dd>
-                    <p className="mt-2 mx-16 text-base text-gray-500" onClick={() => detailPost()}>Read full post</p>
+                    <h1 className="mx-16 text-lg leading-6 font-medium text-gray-900">{title}</h1>
+                    <dd className="mt-2 ml-16 text-base text-gray-500">{description.slice(0,200)}...<span className="text-base text-black-500 see-more" onClick={() => detailPost()}>see more</span></dd>
                 </div>
             </dt>
 

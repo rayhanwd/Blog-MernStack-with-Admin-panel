@@ -2,7 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-img{
-    width: 400px !important;
-    max-width:none;
+.w-700 {
+    width: 700px !important;
+    max-width: none;
+}
+.see-more {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.blog-detail {
+    margin: 5rem;
+    img {
+        width: 60%;
+    }
+    h3{
+        font-size: 2rem;
+    }
+}
+.author{
+    margin-left: 7rem;
+    margin-top: 2rem;
+    h2{
+        font-size:2rem;
+        font-family: sans-serif;
+    }
 }
