@@ -1,16 +1,15 @@
 import React from 'react';
-import Blog from '../Components/Blog/Blog';
-import BlogItem from '../Components/Solution/Solution';
 import Contact from '../Components/Contact/Contact';
 import Footer from '../Components/Footer/Footer';
 import Header from '../Components/Header/Header';
 import Subscribe from '../Components/Subscribe/Subscribe';
+import Main from './../Components/Blog/Main';
 
 const Home = () => {
+    document.title = 'Javascript pain killer | JS Blog';
     return (
         <> <Header/>
-            <Blog/>
-            <BlogItem/>
+            <Main/>
             <Subscribe/>
             <Contact/>
             <Footer/>

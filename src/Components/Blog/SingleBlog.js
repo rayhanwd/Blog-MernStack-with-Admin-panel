@@ -10,18 +10,21 @@ const SingleBlog = (props) => {
         history.push(`/posts/${_id}`);
     }
     return (
-        <div>
-            <dt className="w-700">
-                <div className="mx-16">
-                    <img className="w-700" src={image} />
-                </div>
-                <div>
-                    <h1 className="mx-16 text-lg leading-6 font-medium text-gray-900">{title}</h1>
-                    <dd className="mt-2 ml-16 text-base text-gray-500">{description.slice(0,200)}...<span className="text-base text-black-500 see-more" onClick={() => detailPost()}>see more</span></dd>
-                </div>
-            </dt>
+        <article class="flex flex-col shadow mt-4 mr-10 mb-10">
 
-        </div>
+            <a href="#" class="hover:opacity-75">
+                <img style={{margin:'0 auto'}} src={image} />
+            </a>
+            <div class="bg-white flex flex-col justify-start p-6">
+                <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Technology</a>
+                <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">{title}</a>
+                <p href="#" class="text-sm pb-3">
+                    By <a href="#" class="font-semibold hover:text-gray-800">David Grzyb</a>, Published on April 25th, 2020
+                </p>
+                <a href="#" class="pb-6">{description}</a>
+                <p style={{cursor:'pointer'}} onClick={() => detailPost()} class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></p>
+            </div>
+        </article>
     );
 };
 

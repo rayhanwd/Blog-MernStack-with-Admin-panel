@@ -14,24 +14,21 @@ const Blog = () => {
     }, [])
 
     return (
-        <div className="md:flex mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-            <div className="mt-10">
-                <dl className="w-700 space-y-10 md:space-y-0 md:grid md:grid-cols-1 md:gap-x-8 md:gap-y-10">
-                    {posts.map((post) => (
-                        <SingleBlog data={post} key={post._id}/>
-                    ))}
-                </dl>
-                
+        <section class="w-full md:w-2/3 flex flex-col items-center px-3">
+            {
+                posts.map(post => <SingleBlog data={post} />)
+            }
+
+            <div class="flex items-center py-8">
+                <a href="#" class="h-10 w-10 bg-blue-800 hover:bg-blue-600 font-semibold text-white text-sm flex items-center justify-center">1</a>
+                <a href="#" class="h-10 w-10 font-semibold text-gray-800 hover:bg-blue-600 hover:text-white text-sm flex items-center justify-center">2</a>
+                <a href="#" class="h-10 w-10 font-semibold text-gray-800 hover:text-gray-900 text-sm flex items-center justify-center ml-3">Next <i class="fas fa-arrow-right ml-2"></i></a>
             </div>
-            <div className="mx-20 center author">
-                <h2>Kazi Rayhan</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis odio esse explicabo laboriosam. Rerum, maiores? Amet expedita modi sit repellat! Incidunt, error!</p>
-                <button>Profile</button>
-            </div>
-        </div>
+
+        </section>
     );
 };
 
 export default Blog;
 
-//<img className="w-full bg-cover" src="https://flaviocopes.com/react-router-uselocation-usehistory-undefined/banner.png" />
+{/* //<img className="w-full bg-cover" src="https://flaviocopes.com/react-router-uselocation-usehistory-undefined/banner.png" /> */ }
