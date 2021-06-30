@@ -22,7 +22,7 @@ const ManagePost = () => {
             .then(result => {
               if(result){
                 // event.target.parentNode.style.display = 'none';
-                alert('Product Delete Successfully!')
+                alert('Post Delete Successfully!')
               }
             })
     }
