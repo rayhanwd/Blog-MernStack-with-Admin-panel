@@ -10,21 +10,36 @@ const SingleBlog = (props) => {
         history.push(`/posts/${_id}`);
     }
     return (
-        <article class="flex flex-col shadow mt-4 mr-10 mb-10">
 
-            <a href="#" class="hover:opacity-75">
-                <img style={{margin:'0 auto'}} src={image} />
-            </a>
-            <div class="bg-white flex flex-col justify-start p-6">
-                <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Technology</a>
-                <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">{title}</a>
-                <p href="#" class="text-sm pb-3">
-                    By <a href="#" class="font-semibold hover:text-gray-800">David Grzyb</a>, Published on April 25th, 2020
-                </p>
-                <a href="#" class="pb-6">{description}</a>
-                <p style={{cursor:'pointer'}} onClick={() => detailPost()} class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></p>
-            </div>
-        </article>
+                <div class="overflow-hidden shadow-lg rounded-lg h-90 w-60 md:w-80 cursor-pointer m-auto">
+                    <a href="#" class="w-full block h-full">
+                        <img alt="blog photo" src={image} class="max-h-40 w-full object-cover" />
+                        <div class="bg-white dark:bg-gray-800 w-full p-4">
+                            <p class="text-indigo-500 text-md font-medium">
+                                Tech
+                            </p>
+                            <p class="text-gray-800 dark:text-white text-md font-medium mb-2">
+                                {title}
+                            </p>
+                            <p class="text-gray-400 dark:text-gray-300 font-light text-md">
+                                {description.slice(0,100)}...
+                            </p>
+                            <div class="flex items-center mt-4">
+                                <a href="#" class="block relative">
+                                    <img alt="profil" src="/images/person/6.jpg" class="mx-auto object-cover rounded-full h-10 w-10 " />
+                                </a>
+                                <div class="flex flex-col justify-between ml-4 text-sm">
+                                    <p class="text-gray-800 dark:text-white">
+                                        Jean Jacques
+                                    </p>
+                                    <p class="text-gray-800 dark:text-white">
+                                        created At : 11/11/22
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
     );
 };
 

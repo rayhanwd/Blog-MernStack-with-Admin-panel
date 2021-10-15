@@ -18,7 +18,7 @@ const BlogDetails = () => {
     return (
         <>
             <Navs />
-            <div class="container mx-auto flex flex-wrap py-6">
+            <div class="container mx-auto flex flex-wrap py-10 px-20">
             <article class="flex flex-col shadow my-4">
                 <a href="#" class="hover:opacity-75">
                     <img style={{margin:'0 auto'}} src={post.image} />
